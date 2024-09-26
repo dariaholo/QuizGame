@@ -1,7 +1,7 @@
 import pandas as pd
 
-file_path = 'C:\Users\panho\Documents\2. DARIA\Python vol.2 - Quiz Game\Q&A.csv'
-questions_df = pd.read_csv(file_path)
+#file_path = 'C:\Users\panho\Documents\2. DARIA\Python vol.2 - Quiz Game\Q&A.csv' - not needed
+questions_df = pd.read_csv(file_path) #add file name in apostrophies
 
 def ask_questions(questions_df):
     for index, row in questions_df.iterrows():
@@ -23,3 +23,6 @@ def ask_questions(questions_df):
         print("\n")
 
 ask_questions(questions_df)
+
+# Overall good job! It does what it's supposed to do. Please change the file name to smth without spaces. 
+# Try thinking of how you'll be checking if the answer is correct and how to make the questions random :)

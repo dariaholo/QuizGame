@@ -1,6 +1,7 @@
 import csv
 import random
 file_name = 'Q&A.csv'
+output_file_name = 'Q&A_points.csv'
 
 with open(file_name, mode='r', encoding='utf-8') as file:
     csv_reader = csv.reader(file)
@@ -8,6 +9,10 @@ with open(file_name, mode='r', encoding='utf-8') as file:
     headers = next(csv_reader)
     questions_list = list(csv_reader)
     random.shuffle(questions_list)
+
+    updated_rows = [headers + ['points']]
+
+    total_points = 0
 
     for row in questions_list:
         # Wyświetlanie pytania i odpowiedzi
@@ -26,7 +31,17 @@ with open(file_name, mode='r', encoding='utf-8') as file:
         correct_answer = row[5].strip().upper()
         if answer == correct_answer:
                 print("Correct!")
+                points = 1
+                total_points += 1
         else:
                 print(f"Incorrect! The correct answer was: {correct_answer}")
+                points = 0
+        updated_rows.append(row + [points])
 
         print("\n")
+
+with open(output_file_name, mode='w', encoding='utf-8', newline='') as output_file:
+    csv_writer = csv.writer(output_file)
+    csv_writer.writerows(updated_rows)
+
+print(f"Quiz completed! You scored {total_points} points. Results saved to 'Q&A_points'.")

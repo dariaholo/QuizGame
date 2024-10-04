@@ -1,3 +1,6 @@
+# first of all, it's not technically a python file, you need to finish the file name with .py or choose 'New -> Python file' when making next files
+# otherwise you won't be able to run the app, as the file is treated as an .input file :)
+
 import csv
 import random
 file_name = 'Q&A.csv'
@@ -6,11 +9,14 @@ output_file_name = 'Q&A_points.csv'
 with open(file_name, mode='r', encoding='utf-8') as file:
     csv_reader = csv.reader(file)
 
+    # great work with the file reading/writing
+
     headers = next(csv_reader)
     questions_list = list(csv_reader)
     random.shuffle(questions_list)
 
-    updated_rows = [headers + ['points']]
+    updated_rows = [headers + ['points']] # why use this structure in the result file? Why not just show final result or which answer was correct?
+    # do you intend to use that information later?
 
     total_points = 0
 
@@ -26,9 +32,9 @@ with open(file_name, mode='r', encoding='utf-8') as file:
 
         while answer not in ['A', 'B', 'C', 'D']:
             print("Invalid answer. Please enter A, B, C, or D.")
-            answer = input("Enter your answer (A, B, C, or D): ").strip().upper()
+            answer = input("Enter your answer (A, B, C, or D): ").strip().upper() # doubling of almost the same print, try to simplify it
 
-        correct_answer = row[5].strip().upper()
+        correct_answer = row[5].strip().upper() # i don't really understand the intent here? do you want to add the correct answer as another column in the csv?
         if answer == correct_answer:
                 print("Correct!")
                 points = 1
@@ -45,3 +51,6 @@ with open(output_file_name, mode='w', encoding='utf-8', newline='') as output_fi
     csv_writer.writerows(updated_rows)
 
 print(f"Quiz completed! You scored {total_points} points. Results saved to 'Q&A_points'.")
+
+
+# overall good job :) you have some place to improve as it won't run in the current form, but you're going in the right direction :)

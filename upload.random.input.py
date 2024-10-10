@@ -1,6 +1,3 @@
-# first of all, it's not technically a python file, you need to finish the file name with .py or choose 'New -> Python file' when making next files
-# otherwise you won't be able to run the app, as the file is treated as an .input file :)
-
 import csv
 import random
 file_name = 'Q&A.csv'

@@ -1,4 +1,4 @@
-from ask_Q import load_questions, save_results, run_quiz_for_player
+from functions import load_questions, save_results, run_quiz_for_player
 
 if __name__ == "__main__":
     file_name = 'Q&A.csv'

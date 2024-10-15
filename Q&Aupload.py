@@ -1,28 +1,22 @@
-import pandas as pd
+from ask_Q import load_questions, save_results, run_quiz_for_player
 
-#file_path = 'C:\Users\panho\Documents\2. DARIA\Python vol.2 - Quiz Game\Q&A.csv' - not needed
-questions_df = pd.read_csv(file_path) #add file name in apostrophies
+if __name__ == "__main__":
+    file_name = 'Q&A.csv'
+    output_file_name = 'Q&A_points.csv'
 
-def ask_questions(questions_df):
-    for index, row in questions_df.iterrows():
+    headers, questions_list = load_questions(file_name)
 
-        print(f"question {index + 1}: {row['question']}")
-        print(f"A) {row['answer_a']}")
-        print(f"B) {row['answer_b']}")
-        print(f"C) {row['answer_c']}")
-        print(f"D) {row['answer_d']}")
+    results = [['Player Name', 'Points']]
+    num_players = int(input("Enter the number of players: "))
+
+    for i in range(num_players):
+        player_name = input(f"\nEnter the name of player {i + 1}: ")
+        player_points = run_quiz_for_player(player_name, questions_list)
+        results.append([player_name, player_points])
+
+    save_results(output_file_name, results)
 
 
-        answer = input("Choose your answer: A, B, C, D").strip().upper()
-
-
-        while answer not in ['A', 'B', 'C', 'D']:
-            print("Incorrect. Choose answer A, B, C or D")
-            answer = input("Choose answer:").strip().upper()
-
-        print("\n")
-
-ask_questions(questions_df)
-
-# Overall good job! It does what it's supposed to do. Please change the file name to smth without spaces. 
-# Try thinking of how you'll be checking if the answer is correct and how to make the questions random :)
+    print("\nQuiz completed! Here are the final results:")
+    for result in results[1:]:
+        print(f"{result[0]}: {result[1]} points")
